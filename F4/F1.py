@@ -1,6 +1,6 @@
 a=10 b=20 a+b print("Hi Suresh") ^g ^G 
 
-" i am going to be big"
+"yes"
 
 if a>30:
   print("Yes")
