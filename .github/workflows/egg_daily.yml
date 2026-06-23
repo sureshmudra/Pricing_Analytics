@@ -1,0 +1,24 @@
+name: NECC Egg Price Daily
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+      - name: Install dependencies
+        run: pip install selenium pandas webdriver-manager
+      - name: Run extractor
+        run: python necc_egg_price_extractor.py
+      - name: Upload CSV
+        uses: actions/upload-artifact@v4
+        with:
+          name: egg-price-data
+          path: "*.csv"
