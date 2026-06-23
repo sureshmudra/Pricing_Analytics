@@ -29,7 +29,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 URL   = "https://www.e2necc.com/home/eggprice"
 TODAY = datetime.today().strftime("%Y%m%d")
-OUTDIR = Path(".")
+OUTDIR = Path("output")
+OUTDIR.mkdir(exist_ok=True)
 
 
 def get_driver():
