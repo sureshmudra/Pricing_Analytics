@@ -17,8 +17,10 @@ jobs:
         run: pip install selenium pandas webdriver-manager lxml html5lib
       - name: Run extractor
         run: python necc_egg_price_extractor.py
-      - name: Upload CSV
-        uses: actions/upload-artifact@v4
-        with:
-          name: egg-price-data
-          path: "output/*.csv"
+      - name: Commit CSV to repo
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add output/*.csv output/*.json || true
+          git commit -m "Add egg price data ${{ github.run_id }}" || true
+          git push || true
